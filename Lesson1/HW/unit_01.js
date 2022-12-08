@@ -3,9 +3,10 @@
 
 const out1 = document.querySelector('.out-1');
 
-// функцию пишите здесь
-
-
+function getRandomInt() {
+    out1.innerHTML = Math.floor(117 - 0.5 + Math.random() * (132 - 117 + 1));
+}
+getRandomInt();
 // Task 2.
 
 // Чуть усложним. Сейчас первая задача жестко завязана на значения 117 и 132. Напишите функцию getRandomInt2, которая на основе min, max генерирует случайное целое число в этом диапазоне и выводит в out-2. Запустите эту функцию. 
@@ -14,8 +15,10 @@ const out2 = document.querySelector('.out-2');
 let min = 888;
 let max = 900;
 
-// функцию пишите здесь
-
+function getRandomInt2() {
+    out2.innerHTML = Math.floor(min - 0.5 + Math.random() * (max - min + 1))
+}
+// getRandomInt2();
 
 // Task 3.
 // Не забываем, что функции можно вызывать внутри другой функции. Напишите функцию t3, которая срабатывает при клике по кнопке .b-3, и запускает фукнции hello, и f2021. Если все сделано верно, то внутри .out-3 вы увидите текст hello 2021.
@@ -32,7 +35,8 @@ function f2021() {
 
 
 function t3() {
-    // тут вызываете hello и f2021
+    hello();
+    f2021();
 }
 
 document.querySelector('.b-3').addEventListener('click', t3);
@@ -56,9 +60,11 @@ function t4() {
     f2021();
 }
 
-// тут ваша функция t4_1
+function t4_1() {
+    t4();
+}
 
-// document.querySelector('.b-4').addEventListener('click', t4_1);
+document.querySelector('.b-4').addEventListener('click', t4_1);
 
 
 
@@ -76,7 +82,13 @@ function even() {
 }
 
 function t5() {
-
+    let input = document.querySelector('.i-5').value;
+    if (input % 2 === 0) {
+        even();
+    }
+    else {
+        odd();
+    }
 }
 
 document.querySelector('.b-5').addEventListener('click', t5);
@@ -94,9 +106,16 @@ function t6() {
     function even() {
         out6.textContent = 'even';
     }
-     min = 10000;
-     max = 10099;
-    // тут запускаете getRandomInt2
+    min = 10000;
+    max = 10099;
+
+    getRandomInt2()
+    if (out2.textContent % 2 === 0) {
+        even();
+    }
+    else {
+        odd();
+    }
 
 }
 
@@ -111,7 +130,8 @@ const out7 = document.querySelector('.out-7');
 let z7 = 91;
 
 function t7() {
-
+    if (z7 !== 100) z7++;
+    out7.innerHTML = z7;
 }
 
 document.querySelector('.b-7').addEventListener('click', t7);
@@ -130,7 +150,9 @@ function showNumber() {
 }
 
 function t8() {
-
+    if (z8 === 9) return z8 = 0;
+    z8++;
+    showNumber();
 }
 
 document.querySelector('.b-8').addEventListener('click', t8);
@@ -140,11 +162,12 @@ document.querySelector('.b-8').addEventListener('click', t8);
 // Task 9
 // Напишите функцию t9, которая в зависимости от значения переменной z9, делает активным option s.9 в таким же value. Внимание, z9 может иметь значения 1, 2, 3, 4, 5. Действия запускаются по кнопке .b-9.
 
-let z9 = 3;
+let z9 = 5;
 const s9 = document.querySelector('.s-9');
 
 function t9() {
-
+    let option = document.querySelector(`option[value = "${z9}"]`);
+    option.setAttribute('selected', "");
 }
 
 document.querySelector('.b-9').addEventListener('click', t9);
@@ -164,7 +187,11 @@ function showArr() {
 
 function t10() {
     ar10_res = []; // очищаем
-
+    ar10.filter(item => {
+        if (typeof item === 'number') ar10_res.push(item);
+    })
+    console.log(ar10_res);
+    showArr();
 }
 
 document.querySelector('.b-10').addEventListener('click', t10);
