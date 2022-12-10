@@ -2,11 +2,11 @@
 // Напишите функцию t1, которая принимает два аргумента и выводит в .out-1 случайное целое число от первого аргумента(включительно) до второго(включительно). Функция запускается по кнопке .b-1. Обратите внимание на запуск функции. Чтобы передать аргументы, нам пришлось обернуть функцию в анонимную.
 
 function t1(min, max) {
-
+    return Math.floor(min - 0.5 + Math.random() * (max - min + 1))
 }
 
 document.querySelector('.b-1').addEventListener('click', function () {
-    t1(120, 140);
+    document.querySelector('.out-1').innerHTML = t1(120, 140);
 })
 
 
@@ -16,7 +16,8 @@ document.querySelector('.b-1').addEventListener('click', function () {
 //Напишите функцию t2, которая принимает три аргумента (число от, число до и блок, в который нужно вывести данные) и выводит в указанный блок случайное целое число от первого аргумента(включительно) до второго(включительно). Функция запускается по кнопке .b-2. Обратите внимание на запуск функции. Чтобы передать аргументы, нам пришлось обернуть функцию в анонимную.
 
 function t2(min, max, block) {
-
+    let rand = Math.floor(min - 0.5 + Math.random() * (max - min + 1));
+    block.innerHTML = rand;
 }
 
 document.querySelector('.b-2').addEventListener('click', function () {
@@ -29,8 +30,9 @@ document.querySelector('.b-2').addEventListener('click', function () {
 // Task 3.
 //Напишите функцию t3, которая принимает два аргумента (число от, число до ) и выводит в блок .out-3 случайное целое число от первого аргумента(включительно) до второго(включительно). Задайте значение по умолчанию для min число 0 для max число 100. Функция запускается по кнопке .b-3. Обратите внимание на запуск функции. Чтобы передать аргументы, нам пришлось обернуть функцию в анонимную.
 
-function t3(min, max) {
-
+function t3(min = 0, max = 100) {
+    const rand = Math.floor(min - 0.5 + Math.random() * (max - min + 1));
+    document.querySelector('.out-3').innerHTML = rand;
 }
 
 document.querySelector('.b-3').addEventListener('click', function () {
@@ -41,7 +43,12 @@ document.querySelector('.b-3').addEventListener('click', function () {
 // Напишите функцию t4, которая делит число a на b и результат выводит в out-4. Если b равно нулю, то в out-4 выводится аргумент c.
 
 function t4(a, b, c) {
-
+    if (b === 0) {
+        document.querySelector('.out-4').innerHTML = c;
+    }
+    else {
+        document.querySelector('.out-4').innerHTML = Number(a / b).toFixed(2);
+    }
 }
 
 document.querySelector('.b-4').addEventListener('click', function () {
@@ -52,12 +59,17 @@ document.querySelector('.b-4').addEventListener('click', function () {
 // Task 5
 // Напишите функцию t5, которая делит число a на b и результат выводит в out-5. Если b равно нулю, то в out-5 выводится аргумент c, который по умолчанию равен нулю.
 
-function t5(a, b, c) {
-
+function t5(a, b, c = 0) {
+    if (b === 0) {
+        document.querySelector('.out-5').innerHTML = c;
+    }
+    else {
+        document.querySelector('.out-5').innerHTML = Number(a / b).toFixed(2);
+    }
 }
 
 document.querySelector('.b-5').addEventListener('click', function () {
-    t5(7, 12, false);
+    t5(7, 0);
 })
 
 
@@ -68,7 +80,7 @@ document.querySelector('.b-5').addEventListener('click', function () {
 const out6 = document.querySelector('.out-6');
 
 function t6(arr, block) {
-
+    out6.innerHTML = arr.join(' ');
 }
 
 document.querySelector('.b-6').addEventListener('click', function () {
@@ -82,12 +94,17 @@ document.querySelector('.b-6').addEventListener('click', function () {
 
 const out7 = document.querySelector('.out-7');
 
-function t7(arr, block) {
-
+function t7(block, arr = []) {
+    if (Array.isArray(arr) !== true) {
+        block.innerHTML = false;
+    }
+    else {
+        block.innerHTML = arr.join(' ');
+    }
 }
 
 document.querySelector('.b-7').addEventListener('click', function () {
-    t7([99, 44, 55, 66], out7);
+    t7(out7, [99, 44, 55, 66]);
 })
 
 
@@ -98,7 +115,7 @@ document.querySelector('.b-7').addEventListener('click', function () {
 const out8 = document.querySelector('.out-8');
 
 function t8(block, text) {
-
+    block.innerHTML = text.trim().toLowerCase();
 }
 
 document.querySelector('.b-8').addEventListener('click', function () {
@@ -114,12 +131,14 @@ document.querySelector('.b-8').addEventListener('click', function () {
 
 const out9 = document.querySelector('.out-9');
 
-function t9(text, block) {
-
+function t9(block, text = '') {
+    if (block) {
+        block.innerHTML = text.trim().toLowerCase();
+    }
 }
 
 document.querySelector('.b-9').addEventListener('click', function () {
-    t9(' HelLO wORLd       ', out9);
+    t9(out9, ' HelLO wORLd       ');
 })
 
 
@@ -131,7 +150,7 @@ document.querySelector('.b-9').addEventListener('click', function () {
 const out10 = document.querySelector('.out-10');
 
 function t10() {
-
+    out10.innerHTML = arguments.length;
 }
 
 document.querySelector('.b-10').addEventListener('click', function () {
@@ -145,7 +164,7 @@ document.querySelector('.b-10').addEventListener('click', function () {
 const out11 = document.querySelector('.out-11');
 
 function t11() {
-
+    out11.innerHTML = Array.from(arguments).reduce((accum, item) => accum + item);
 }
 
 document.querySelector('.b-11').addEventListener('click', function () {
@@ -157,8 +176,8 @@ document.querySelector('.b-11').addEventListener('click', function () {
 
 const out12 = document.querySelector('.out-12');
 
-function t12() {
-
+function t12(...args) {
+    out12.innerHTML = args.reduce((accum, item) => accum + item);
 }
 
 document.querySelector('.b-12').addEventListener('click', function () {
@@ -172,7 +191,7 @@ document.querySelector('.b-12').addEventListener('click', function () {
 const out13 = document.querySelector('.out-13');
 
 function t13(arr, funcArg) {
-
+    funcArg(arr);
 }
 
 // функции для вывода уже заготовлены
@@ -185,7 +204,7 @@ function showArrUnderscore(arr) {
 }
 
 document.querySelector('.b-13').addEventListener('click', function () {
-    t13([3, 4, 5], showArrSpace);
+    t13([3, 4, 5], showArrUnderscore);
     // попробуйте также вместо showArrSpace поставить showArrUnderscore
 })
 
@@ -196,20 +215,20 @@ document.querySelector('.b-13').addEventListener('click', function () {
 const out14 = document.querySelector('.out-14');
 
 function t14(arr, funcArg, block) {
-
+    funcArg(arr, block);
 }
 
 // функции для вывода уже заготовлены
 function showArrSpace2(arr, block) {
-    // вывод в блок пишите как в предыдущем примере
+    block.innerHTML = arr.join(' ');
 }
 
 function showArrUnderscore2(arr, block) {
-    // вывод в блок пишите как в предыдущем примере
+    block.innerHTML = arr.join('_');
 }
 
 document.querySelector('.b-14').addEventListener('click', function () {
-    t14([3, 4, 5], showArrSpace, out14);
+    t14([3, 4, 5], showArrUnderscore2, out14);
     // попробуйте также вместо showArrSpace2 поставить showArrUnderscore2
 })
 
@@ -220,7 +239,12 @@ document.querySelector('.b-14').addEventListener('click', function () {
 const out15 = document.querySelector('.out-15');
 
 function t15(num, even, odd) {
-
+    if (num % 2 === 0) {
+        even();
+    }
+    else {
+        odd();
+    }
 }
 
 function showOne() {
@@ -233,5 +257,5 @@ function showTwo() {
 
 
 document.querySelector('.b-15').addEventListener('click', function () {
-    t15(5, showOne, showTwo);
+    t15(6, showOne, showTwo);
 })
