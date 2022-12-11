@@ -8,7 +8,9 @@
 // }
 
 const t1 = () => {
-
+    const x = 77;
+    const y = 99;
+    console.log(x + y)
 }
 
 document.querySelector('.b-1').addEventListener('click', t1);
@@ -25,7 +27,9 @@ document.querySelector('.b-1').addEventListener('click', t1);
 // })
 
 document.querySelector('.b-2').addEventListener('click', () => {
-
+    const x = 99;
+    const y = 88;
+    document.querySelector('.out-2').textContent = x + y;
 });
 
 
@@ -36,7 +40,9 @@ document.querySelector('.b-2').addEventListener('click', () => {
 //     document.querySelector('.out-3').textContent = a + b;
 // }
 
-// const t3 = 
+const t3 = (a, b) => {
+    document.querySelector('.out-3').textContent = a + b;
+}
 
 document.querySelector('.b-3').addEventListener('click', function () {
     t3(4, 5);
@@ -50,7 +56,9 @@ document.querySelector('.b-3').addEventListener('click', function () {
 //     document.querySelector('.out-4').textContent = s.trim().length;
 // }
 
-// const t4 = 
+const t4 = s => {
+    document.querySelector('.out-4').textContent = s.trim().length;
+}
 
 document.querySelector('.b-4').addEventListener('click', function () {
     t4('   aha     ');
@@ -64,10 +72,10 @@ document.querySelector('.b-4').addEventListener('click', function () {
 //     return Math.pow(a, b);
 // }
 
-// const t5 = 
+const t5 = (a, b) => a ** b;
 
 document.querySelector('.b-5').addEventListener('click', function () {
-    document.querySelector('.out-5').textContent = t5(3,4);
+    document.querySelector('.out-5').textContent = t5(3, 4);
 })
 
 
@@ -78,10 +86,10 @@ document.querySelector('.b-5').addEventListener('click', function () {
 //     return ((a % 2 === 0) ? true : false);
 // }
 
-// const t6
+const t6 = a => (a % 2 === 0) ? true : false;
 
 document.querySelector('.b-6').addEventListener('click', function () {
-    document.querySelector('.out-6').textContent = t6(34);
+    document.querySelector('.out-6').textContent = t6(33);
 })
 
 
@@ -95,7 +103,7 @@ document.querySelector('.b-6').addEventListener('click', function () {
 //     return arr;
 // }
 
-// const t7 =
+const t7 = arg => arg.map(item => item * 2)
 
 document.querySelector('.b-7').addEventListener('click', function () {
     document.querySelector('.out-7').textContent = t7([4, 5, 6]);
@@ -113,7 +121,7 @@ document.querySelector('.b-7').addEventListener('click', function () {
 //     return arr2;
 // }
 
-// const t8
+const t8 = arr => arr.filter(item => item > 5)
 
 
 document.querySelector('.b-8').addEventListener('click', function () {
@@ -130,7 +138,7 @@ document.querySelector('.b-8').addEventListener('click', function () {
 //     });
 // }
 
-// const t9 = 
+const t9 = arr => arr.reduce((accum, item) => accum += item)
 
 document.querySelector('.b-9').addEventListener('click', function () {
     document.querySelector('.out-9').textContent = t9([20, 30, 40]);
@@ -178,17 +186,17 @@ document.querySelector('.b-11').addEventListener('click', function () {
 // Task 12
 // напишите стрелочную функцию t12, которая возвращает большее из переданных ей двух чисел. Числа передаются в качестве аргумента.
 
-// const t12 = 
+const t12 = arr => arr.reduce((accum, item) => accum < item ? accum = item : accum)
 
 document.querySelector('.b-12').addEventListener('click', function () {
-    document.querySelector('.out-12').textContent = t12(9, 22);
+    document.querySelector('.out-12').textContent = t12([119, 22]);
 })
 
 
 // Task 13
 // Напишите стрелочную функцию, t13, которая возвращает случайное целое число в заданном диапазоне min, max.
 
-// const t13 = 
+const t13 = (min, max) => Math.floor(min + Math.random() * (max - min - 0.5));
 
 document.querySelector('.b-13').addEventListener('click', function () {
     document.querySelector('.out-13').textContent = t13(100, 120);
@@ -198,36 +206,36 @@ document.querySelector('.b-13').addEventListener('click', function () {
 // Task 14
 // Напишите стрелочную функцию t14, которая получает строку как аргумент и возвращает строку очищенную от пробелов ( с начала и конца) или false если строка содержит только пробелы. 
 
-// const t14
+const t14 = str => str.trim() === '' ? false : str.trim();
 
 document.querySelector('.b-14').addEventListener('click', function () {
-    console.log(t14('           hi              '));
+    console.log(t14('                         '));
 })
 
 // Task 15
 // Напишите стрелочную функцию, которая проверяет что пользователь ввел в input. Если число - возвращает true, если строку - false. 
 
-// const t15
+const t15 = val => Number(val) ? true : false
 
 document.querySelector('.b-15').addEventListener('click', function () {
-    let num = document.querySelector('i-15').value;
+    let num = document.querySelector('.i-15').value;
     document.querySelector('.out-15').textContent = t15(num);
 })
 
 // Task 16
 // Напишите стрелочную функцию t16, которая проверяет что в массиве находится четное количество элементов. Возвращает true, false.
 
-// const t16
+const t16 = arr => arr.length % 2 === 0 ? true : false
 
 document.querySelector('.b-16').addEventListener('click', function () {
-    document.querySelector('.out-16').textContent = t16([4, 5, 6]);
+    document.querySelector('.out-16').textContent = t16([4, 5]);
 })
 
 
 // Task 17
 // Напишите стрелочную функцию t17, которая проверяет что в массиве находятся только числа. Если да - то возвращает true, если нет, false.
 
-// const t17
+const t17 = arr => arr.every(item => typeof item === 'number')
 
 document.querySelector('.b-17').addEventListener('click', function () {
     document.querySelector('.out-17').textContent = t17([4, 5, 6]);
@@ -237,19 +245,19 @@ document.querySelector('.b-17').addEventListener('click', function () {
 // Task 18
 // Напишите стрелочную функцию t18, которая получает два аргумента - массив и число. Возвращает true если число есть в массиве и false если нет.
 
-// const t18
+const t18 = (arr, number) => arr.includes(number);
 
 document.querySelector('.b-18').addEventListener('click', function () {
-    document.querySelector('.out-18').textContent = t18([4, 5, 6], 6);
+    document.querySelector('.out-18').textContent = t18([4, 5, 6], 7);
 })
 
 // Task 19
 // Напишите стрелочную функцию t19, которая принимает строку и аргумент true или false. Если второй аргумент false - то возвращает строку. Если true - возвращает перевернутую строку.
 
-// const t19
+const t19 = (str, arg) => arg === true ? str.split('').reverse().join('') : str
 
 document.querySelector('.b-19').addEventListener('click', function () {
-    document.querySelector('.out-19').textContent = t19('hello', true);
+    document.querySelector('.out-19').textContent = t19('hello', false);
 })
 
 
@@ -263,9 +271,13 @@ const j20 = {
     m: 7
 }
 
-// const t20
+const t20 = (obj, num) => {
+    for (let key in obj) {
+        if (obj[key] === num) return key
+    }
+}
 
 document.querySelector('.b-20').addEventListener('click', function () {
-    document.querySelector('.out-20').textContent = t20(j20, 7);
+    document.querySelector('.out-20').textContent = t20(j20, 22);
 })
 
