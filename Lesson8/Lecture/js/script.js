@@ -90,4 +90,6 @@ let w2 = w.filter(mySort);
 
 console.log(w2);
 
-let w2 = w.filter(item => item.age >= 26);
+let w3 = w.filter(item => item.age >= 26);
+
+console.log(w3);
