@@ -6,4 +6,4 @@
         p = p + 10;
         console.log('work q 2: ' + p);
     }
-})();
+})();    
