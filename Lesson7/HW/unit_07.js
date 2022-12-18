@@ -18,7 +18,7 @@ function sliderFunction() {
     let slideCollection;
 
     function startFunction(event) {
-        event.stopPropagation();
+        event.stopPropagation(); // Прекращает дальнейшую передачу текущего события.
         this.classList.add('hide');
         start();
     }
@@ -50,18 +50,16 @@ function sliderFunction() {
         showSingleSlide(count);
     }
 
-    function showSingleSlide(n) {
-        slideCollection[n].classList.remove('hide');
-        slideCollection[n].style.background = bgColor[randomInteger(0, bgColor.length - 1)];
-    }
-
     function hideSingleSlide(n) {
         slideCollection[n].classList.add('hide');
 
     }
 
+    function showSingleSlide(n) {
+        slideCollection[n].classList.remove('hide');
+        slideCollection[n].style.background = bgColor[randomInteger(0, bgColor.length - 1)];
+    }
     function randomInteger(min, max) {
-        // случайное число от min до (max+1)
         let rand = min + Math.random() * (max + 1 - min);
         return Math.floor(rand);
     }
@@ -69,4 +67,4 @@ function sliderFunction() {
     document.querySelector('.btn-start').onclick = startFunction;
 }
 
-document.addEventListener("DOMContentLoaded", sliderFunction);
+document.addEventListener("DOMContentLoaded", sliderFunction); // происходит когда весь HTML был полностью загружен и пройден парсером
