@@ -18,7 +18,7 @@ function sliderFunction() {
     let slideCollection;
 
     function startFunction(event) {
-        event.stopPropagation(); // Прекращает дальнейшую передачу текущего события.
+        // event.stopPropagation(); // Прекращает дальнейшую передачу текущего события.
         this.classList.add('hide');
         start();
     }
