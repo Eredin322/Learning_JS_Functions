@@ -132,4 +132,4 @@ function t10(arr, ...items) {
 
 document.querySelector('.b-10').addEventListener('click', function () {
     document.querySelector('.out-10').innerHTML = t10([1, 2, 3, 4], 5, 6, 7, 8).join(' ');
-})
+});
