@@ -3,11 +3,13 @@
 
 function t1(n) {
     let out = '';
-
+    r1(n);
     function r1(z) {
-
+        if (z === 0) return document.querySelector('.out-1').innerHTML = out;
+        out += z + ' ';
+        z--;
+        r1(z--);
     }
-
 }
 
 document.querySelector('.b-1').addEventListener('click', () => {
@@ -22,11 +24,15 @@ document.querySelector('.b-1').addEventListener('click', () => {
 
 function t2(n) {
     let out = '';
-
-    function r2(z) {
-
+    r2();
+    function r2(z = 0) {
+        console.log(z);
+        if (z >= n) return out;
+        out += z + ' ';
+        z = z + 2;
+        r2(z);
     }
-
+    document.querySelector('.out-2').innerHTML = out;
 }
 
 document.querySelector('.b-2').addEventListener('click', () => {
@@ -42,11 +48,14 @@ function randomInteger(min, max) {
 }
 
 function t3(arg) {
-
+    let rand = randomInteger(0, 100)
+    if (arg === 'odd' && rand % 2 !== 0) return rand
+    if (arg === 'even' && rand % 2 === 0) return rand;
+    return t3(arg);
 }
 
 document.querySelector('.b-3').addEventListener('click', () => {
-    document.querySelector('.out-3').textContent = t3('even');
+    document.querySelector('.out-3').textContent = t3('odd');
 });
 
 // Task 4.
@@ -55,7 +64,9 @@ document.querySelector('.b-3').addEventListener('click', () => {
 let ar4 = [3, 4, 6, 7, 8];
 
 function t4() {
-
+    let rand = randomInteger(0, 10);
+    if (ar4.includes(rand)) return t4();
+    return rand;
 }
 
 document.querySelector('.b-4').addEventListener('click', () => {
@@ -68,7 +79,10 @@ document.querySelector('.b-4').addEventListener('click', () => {
 let ar5 = [];
 
 function t5() {
-
+    let rand = randomInteger(0, 10);
+    if (ar5.some(item => item >= 0)) if (ar5.reduce((accum, item) => accum + item) >= 30) return ar5;
+    ar5.push(rand);
+    return t5();
 }
 
 document.querySelector('.b-5').addEventListener('click', () => {
@@ -88,7 +102,14 @@ let ar6 = [
 let ar6_res = [];
 
 function t6(arr) {
-
+    for (let value of arr) {
+        if (!Array.isArray(value)) {
+            typeof value === 'number' ? ar6_res.push(value) : 0;
+        }
+        else {
+            t6(value);
+        }
+    }
 }
 
 document.querySelector('.b-6').addEventListener('click', () => {
@@ -110,7 +131,14 @@ let ar7 = [
 let ar7_res = [];
 
 function t7(arg) {
-
+    for (let value of arg) {
+        if (!Array.isArray(value)) {
+            ar7_res.push(value)
+        }
+        else {
+            t7(value);
+        }
+    }
 }
 
 document.querySelector('.b-7').addEventListener('click', () => {
@@ -123,11 +151,16 @@ document.querySelector('.b-7').addEventListener('click', () => {
 // Напишите рекурсивную функцию t8, которая получает с помощью randomInt целое число от 1000 до 9000 и проверяет если сумма первых двух цифр числа равна сумме 3 и 4 числа то возвращает это число. Если нет - повторяет операцию. Например число 1235 не удовлетворяет этому условию, потому что 1+2 не равно 3+5. А вот число 7180  - удовлетворяет.
 
 function t8() {
-
+    let rand = randomInteger(1000, 9000);
+    console.log(rand);
+    let num1 = Array.from(String(rand).slice(0, 2)).map(item => +item).reduce((accum, item) => accum + item, 0)
+    let num2 = Array.from(String(rand).slice(2, 4)).map(item => +item).reduce((accum, item) => accum + item, 0)
+    if (num1 === num2) return String(rand);
+    return t8();
 }
 
 document.querySelector('.b-8').addEventListener('click', () => {
-    document.querySelector('.out-8').textContent = t8();
+    document.querySelector('.out-8').innerHTML = t8();
 });
 
 
@@ -170,7 +203,12 @@ let ar9 = {
 let ar9_res = [];
 
 function t9(obj) {
-
+    if (obj.age !== undefined) ar9_res.push(obj.age);
+    if (obj.parent !== undefined) {
+        for (let key in obj.parent) {
+            t9(obj.parent[key]);
+        }
+    }
 }
 
 document.querySelector('.b-9').addEventListener('click', () => {
@@ -222,13 +260,20 @@ let ar10 = {
 let ar10_res = [];
 
 function t10(k, obj) {
-
+    if (obj.age === undefined) ar10_res.push(k);
+    if (obj.parent !== undefined) {
+        for (let key in obj.parent) {
+            t10(key, obj.parent[key]);
+        }
+    }
+    console.log(ar10_res);
 }
 
 document.querySelector('.b-10').addEventListener('click', () => {
+    ar10_res = [];
     for (let key in ar10) {
-        t9(key, ar10[key]);
+        t10(key, ar10[key]);
     }
-    document.querySelector('.out-19').innerHTML = ar10_res;
+    document.querySelector('.out-10').innerHTML = ar10_res;
 });
 
