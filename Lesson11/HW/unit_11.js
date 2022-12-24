@@ -3,10 +3,14 @@
 
 function t1(elem) {
     let out = '';
+    out = out + elem.localName.toUpperCase() + ' ';
     r1(elem);
-
     function r1(element) {
-
+        let innerElements = element.children;
+        Array.from(innerElements).forEach(item => {
+            out = out + item.localName.toUpperCase() + ' ';
+            r1(item);
+        });
     }
 
 
@@ -27,10 +31,13 @@ function t2(elem) {
     r2(elem);
 
     function r2(element) {
-
+        let innerElements = element.children;
+        Array.from(innerElements).forEach(item => {
+            console.log(Number(item.innerHTML));
+            if (Number(item.innerHTML)) s = s + +item.innerHTML;
+            r2(item);
+        })
     }
-
-
     return s;
 }
 
@@ -48,7 +55,12 @@ function t3(elem) {
     r3(elem);
 
     function r3(element) {
-
+        let innerElements = element.children;
+        console.log(element.children);
+        Array.from(innerElements).forEach(item => {
+            out = out + item.textContent + ' ';
+            r3(item);
+        });
     }
 
 
@@ -69,7 +81,11 @@ function t4(elem) {
     r4(elem);
 
     function r4(element) {
-
+        let innerElements = element.children;
+        if (innerElements.length === 0) element.style.background = 'orange';
+        Array.from(innerElements).map(item => {
+            r4(item);
+        })
     }
 }
 
@@ -87,7 +103,16 @@ function t5(elem) {
     r5(elem);
 
     function r5(element) {
-
+        let innerElements = element.children;
+        console.log(innerElements);
+        if (innerElements.length === 0) {
+            let newElem = document.createElement('mark');
+            element.replaceWith(newElem)
+        }
+        Array.from(innerElements).map(item => {
+            console.log(item);
+            r5(item);
+        })
     }
 }
 
